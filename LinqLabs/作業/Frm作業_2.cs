@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,7 +112,12 @@ namespace LinqLabs.作業
 
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)  //超煩得找圖片不想做
         {
-
+            byte[] ByteData = (byte[])dataGridView1.CurrentRow.Cells["LargePhoto"].Value;
+            MemoryStream memoryStream = new MemoryStream(ByteData);
+            pictureBox1.Image = Image.FromStream(memoryStream);
+            memoryStream.Close();
         }
+
+       
     }  
 }
